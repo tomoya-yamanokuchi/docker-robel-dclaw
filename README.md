@@ -25,7 +25,8 @@ Preliminary  (If you are new to Docker)
 Main procedure
 -----------------------
 1. Place docker_ubuntu20_cudagl folder in /home/$USER/
-2. In run.sh, change share folders (e.g., -v /home/workspace:) according to your environment. If you do not have these folders, just run "mkdir workspace" and "mkdir catkin_ws"
+2. Place ".mujoco" and "isaacgym" in packages
+3. In run.sh, change share folders (e.g., -v /home/workspace:) according to your environment. If you do not have these folders, just run "mkdir workspace" and "mkdir catkin_ws"
 
 - In terminal, 
 
