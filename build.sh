@@ -1,0 +1,1 @@
+docker build ./ -t docker_robot_learning
