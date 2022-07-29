@@ -9,5 +9,6 @@ scikit-learn
 scikit-learn-intelex
 opencv-python
 sympy
+pandas
 
 ###### Requirements with Version Specifiers ######

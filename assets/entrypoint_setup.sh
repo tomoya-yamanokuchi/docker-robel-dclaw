@@ -3,29 +3,29 @@
 
 check_envs () {
     DOCKER_CUSTOM_USER_OK=true;
-    if [ -z ${DOCKER_USER_NAME+x} ]; then 
+    if [ -z ${DOCKER_USER_NAME+x} ]; then
         DOCKER_CUSTOM_USER_OK=false;
         return;
     fi
-    if [ -z ${DOCKER_USER_ID+x} ]; then 
+    if [ -z ${DOCKER_USER_ID+x} ]; then
         DOCKER_CUSTOM_USER_OK=false;
         return;
     else
-        if ! [ -z "${DOCKER_USER_ID##[0-9]*}" ]; then 
+        if ! [ -z "${DOCKER_USER_ID##[0-9]*}" ]; then
             echo -e "\033[1;33mWarning: User-ID should be a number. Falling back to defaults.\033[0m"
             DOCKER_CUSTOM_USER_OK=false;
             return;
         fi
     fi
-    if [ -z ${DOCKER_USER_GROUP_NAME+x} ]; then 
+    if [ -z ${DOCKER_USER_GROUP_NAME+x} ]; then
         DOCKER_CUSTOM_USER_OK=false;
         return;
     fi
-    if [ -z ${DOCKER_USER_GROUP_ID+x} ]; then 
+    if [ -z ${DOCKER_USER_GROUP_ID+x} ]; then
         DOCKER_CUSTOM_USER_OK=false;
         return;
     else
-        if ! [ -z "${DOCKER_USER_GROUP_ID##[0-9]*}" ]; then 
+        if ! [ -z "${DOCKER_USER_GROUP_ID##[0-9]*}" ]; then
             echo -e "\033[1;33mWarning: Group-ID should be a number. Falling back to defaults.\033[0m"
             DOCKER_CUSTOM_USER_OK=false;
             return;
@@ -45,19 +45,19 @@ setup_env_user () {
     ## Copy bash configs
     cp /root/.profile /home/$USER/
     cp /root/.bashrc /home/$USER/
-    
+
     ## Copy terminator configs
     mkdir -p /home/$USER/.config/terminator
     cp /config /home/$USER/.config/terminator/config
     mkdir -p /root/.config/terminator
     cp /config /root/.config/terminator/config
-    
+
     # Copy SSH keys & fix owner
     if [ -d "/root/.ssh" ]; then
         cp -rf /root/.ssh /home/$USER/
         chown -R $USER:$GROUP /home/$USER/.ssh
     fi
-    
+
     ## Fix owner
     chown $USER:$GROUP /home/$USER
     chown -R $USER:$GROUP /home/$USER/.config
@@ -82,26 +82,19 @@ setup_env_user () {
 # Solve authority issues
 setup_specific_user_setting () {
     sudo chmod 777 /root
-    
+
     # ROS
     echo "source /home/$USER/catkin_ws/devel/setup.bash" >> /root/.bashrc
     sudo mkdir /home/$USER/.ros/
     sudo chmod -R 777 /home/$USER/.ros/
 
-    # MuJoCo & mujoco-py 
+    # MuJoCo & mujoco-py
     export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/$USER/.mujoco/mujoco200/bin
     sudo cp -r /root/.mujoco/ /home/$USER/
     sudo chmod -R 777 /home/$USER/.mujoco/
     sudo chmod -R 777 /usr/local/lib/python3.8/dist-packages/mujoco_py*
     sudo mkdir /home/$USER/.cache
     sudo chmod -R 777 /home/$USER/.cache/
-
-    # pygame
-    sudo chmod -R 777 /home/$USER/.config/
-    sudo chmod -R 777 /dev/input
-
-    # Isaac
-    sudo cp -r /root/isaacgym/ /home/$USER/isaacgym
 }
 
 

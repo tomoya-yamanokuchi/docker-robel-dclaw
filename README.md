@@ -1,5 +1,6 @@
 Environments to be installed
 -----------------------
+```
 - Ubuntu 20.04
 - Python 3.8
 - CUDA 11.4
@@ -9,7 +10,8 @@ Environments to be installed
 - gym 
 - mujoco-py 2.0.2
 - Isaac Gym 1.0rc3
-
+- Jupyter notebook
+```
 
 
 
@@ -25,11 +27,10 @@ Preliminary  (If you are new to Docker)
 Main procedure
 -----------------------
 1. Place docker_ubuntu20_cudagl folder in /home/$USER/
-2. Place ".mujoco" and "isaacgym" in packages
-3. In run.sh, change share folders (e.g., -v /home/workspace:) according to your environment. If you do not have these folders, just run "mkdir workspace" and "mkdir catkin_ws"
+2. In run.sh, change share folders (e.g., -v /home/workspace:) according to your environment. If you do not have these folders, just run "mkdir workspace" and "mkdir catkin_ws"
 
 - In terminal, 
-
+```
 3. sh build.sh  (This takes about 20 min)
 4. export DISPLAY=:0.0
 5. export DISPLAY=:1.0
@@ -40,7 +41,7 @@ Main procedure
   - python sample_code/gym_sample.py
   - python sample_code/mujoco_sample.py
   - cd isaacgym/python/examples/ && python 1080_balls_of_solitude.py
-
+```
 Note:
 - workspace is shared local folder to develop your codes.
 - catkin_ws is shared local ROS folder.
@@ -50,5 +51,13 @@ Note:
 If you get errors, check below
 -----------------------
 - Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: 
-1. sudo usermod -aG docker ${USER}
-2. su - ${USER}
+```
+sudo usermod -aG docker ${USER}
+su - ${USER}
+```
+
+- If you get "error", try remove
+```
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+```

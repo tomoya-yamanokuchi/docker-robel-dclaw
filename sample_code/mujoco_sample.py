@@ -2,7 +2,7 @@ import gym
 
 import mujoco_py
 
-env = gym.make("Hopper-v3")
+env = gym.make("Hopper-v4")
 o = env.reset()
 
 for _ in range(1000):
