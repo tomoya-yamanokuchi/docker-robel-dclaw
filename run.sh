@@ -15,4 +15,4 @@ docker run --rm -it --gpus all --privileged --net=host --ipc=host \
 -v /dev/snd:/dev/snd -e AUDIODEV="hw:Device, 0" \
 -v /home/$USER/workspace:/home/$USER/workspace \
 -v /home/$USER/docker-robel-dclaw/sample_code:/home/$USER/sample_code \
-docker_tomoya_y # イメージ名
+docker_ty

@@ -1,1 +1,1 @@
-docker build ./ -t docker_tomoya_y
+docker build ./ -t docker_ty

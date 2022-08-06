@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 #####################################################
 # Install common apt packages
 #####################################################
-RUN rm /etc/apt/sources.list.d/cuda.list
-RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+# RUN rm /etc/apt/sources.list.d/cuda.list
+# RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 RUN apt-key del 7fa2af80
 RUN apt-get update && apt-get install -y --no-install-recommends wget
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
@@ -51,20 +51,20 @@ ENV LC_ALL en_US.UTF-8
 ENV TZ=Asia/Tokyo
 
 
-#####################################################
-# cmake 3.15.5
-#####################################################
-RUN git clone https://gitlab.kitware.com/cmake/cmake.git && \
-	cd cmake && \
-	git checkout tags/v3.16.3 && \
-	./bootstrap --parallel=8 && \
-	make -j8 && \
-	make install && \
-	cd .. && rm -rf cmake
+# #####################################################
+# # cmake 3.15.5
+# #####################################################
+# # RUN git clone https://gitlab.kitware.com/cmake/cmake.git && \
+# # 	cd cmake && \
+# # 	git checkout tags/v3.16.3 && \
+# # 	./bootstrap --parallel=8 && \
+# # 	make -j8 && \
+# # 	make install && \
+# # 	cd .. && rm -rf cmake
 
 
 #####################################################
-# Python 3.7
+# Python 3.8
 #####################################################
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && apt-get install -y \
@@ -140,7 +140,8 @@ RUN curl -o /usr/local/bin/patchelf https://s3-us-west-2.amazonaws.com/openai-sc
 #####################################################
 # mujoco-py
 #####################################################
-RUN pip install 'mujoco-py<2.1,>=2.0'
+# RUN pip install 'mujoco-py<2.1,>=2.0'
+RUN pip install mujoco-py==2.0.2.13
 ENV LD_PRELOAD=$LD_PRELOAD:"/usr/lib/x86_64-linux-gnu/libGLEW.so"
 
 
