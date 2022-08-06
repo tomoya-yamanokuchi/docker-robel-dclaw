@@ -83,10 +83,12 @@ setup_env_user () {
 setup_specific_user_setting () {
     sudo chmod 777 /root
 
-    # ROS
-    echo "source /home/$USER/catkin_ws/devel/setup.bash" >> /root/.bashrc
-    sudo mkdir /home/$USER/.ros/
-    sudo chmod -R 777 /home/$USER/.ros/
+    # # ROS
+    # echo "source /home/$USER/catkin_ws/devel/setup.bash" >> /root/.bashrc
+    # sudo mkdir /home/$USER/.ros/
+    # sudo chmod -R 777 /home/$USER/.ros/
+
+    export USER=$USER
 
     # MuJoCo & mujoco-py
     export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/$USER/.mujoco/mujoco200/bin

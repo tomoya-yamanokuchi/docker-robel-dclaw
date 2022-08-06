@@ -3,7 +3,6 @@ FROM nvidia/cudagl:11.4.0-base-ubuntu20.04
 # Install packages without prompting the user to answer any questions
 ENV DEBIAN_FRONTEND=noninteractive
 
-
 #####################################################
 # Install common apt packages
 #####################################################
@@ -119,6 +118,7 @@ RUN pip install slackweb==1.0.5
 #####################################################
 COPY packages/.mujoco /root/.mujoco
 ENV LD_LIBRARY_PATH /root/.mujoco/mujoco200/bin:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH /home/tomoya-y/.mujoco/mujoco200/bin:${LD_LIBRARY_PATH}
 ENV LD_LIBRARY_PATH /usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
 
 RUN apt-get update && apt-get install -y \
