@@ -50,16 +50,25 @@ ENV LC_ALL en_US.UTF-8
 ENV TZ=Asia/Tokyo
 
 
-# #####################################################
+# # ####################################################
 # # cmake 3.15.5
+# # ####################################################
+# RUN git clone https://gitlab.kitware.com/cmake/cmake.git && \
+# 	cd cmake && \
+# 	git checkout tags/v3.16.3 && \
+# 	./bootstrap --parallel=8 && \
+# 	make -j8 && \
+# 	make install && \
+# 	cd .. && rm -rf cmake
+
+
 # #####################################################
-# # RUN git clone https://gitlab.kitware.com/cmake/cmake.git && \
-# # 	cd cmake && \
-# # 	git checkout tags/v3.16.3 && \
-# # 	./bootstrap --parallel=8 && \
-# # 	make -j8 && \
-# # 	make install && \
-# # 	cd .. && rm -rf cmake
+# # geckodriver 0.31.0
+# #####################################################
+# RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.31.0/geckodriver-v0.31.0-linux32.tar.gz && \
+# 	tar -zxvf geckodriver-v0.31.0-linux32.tar.gz && \
+# 	chmod +x geckodriver && \
+# 	mv geckodriver /usr/local/bin
 
 
 #####################################################
@@ -70,7 +79,55 @@ RUN apt-get update && apt-get install -y \
   python3.8 \
   python3-pip \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN pip install --upgrade requests
 RUN echo "alias python='python3'" >> /root/.bashrc
+
+
+
+# #####################################################
+# # ROS
+# #####################################################
+# RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+# RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+# RUN apt-get update && apt-get install -y \
+# 	libfcl* \
+# 	libglew-dev \
+# 	ros-noetic-desktop-full \
+# 	ros-noetic-joy \
+# 	ros-noetic-gazebo* \
+# 	ros-noetic-moveit* \
+# 	ros-noetic-image-view* \
+# 	ros-noetic-cv-camera* \
+# 	ros-noetic-joint* \
+# 	ros-noetic-graph* \
+# 	ros-noetic-ros-controller* \
+# 	ros-noetic-joy-teleop* \
+# 	ros-noetic-eigen* \
+# 	ros-noetic-rosbridge-server* \
+# 	ros-noetic-geometric* \
+# 	ros-noetic-object-recognition* \
+# 	ros-noetic-map-server* \
+# 	ros-noetic-warehouse-ros* \
+# 	ros-noetic-rosserial \
+# 	ros-noetic-ros-numpy \
+# 	ros-noetic-geodesy && \
+# 	apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# RUN echo "export ROSLAUNCH_SSH_UNKNOWN=1" >> /root/.bashrc
+# RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
+# RUN echo "source /home/tomoya-y/catkin_ws/devel/setup.bash" >> /root/.bashrc
+# RUN echo "export ROS_HOSTNAME=localhost" >> /root/.bashrc
+# RUN echo "export ROS_IP=localhost" >> /root/.bashrc
+# RUN echo "alias cm='cd /home/tomoya-y/catkin_ws && catkin_make'" >> /root/.bashrc
+# RUN echo "alias roscon='roslaunch ~/catkin_ws/src/image_viewers.launch'" >> /root/.bashrc
+# RUN echo "alias devices='v4l2-ctl --list-devices'" >> /root/.bashrc
+
+
+# #####################################################
+# # camera connection
+# #####################################################
+# RUN apt-get update && apt-get install -y v4l-utils
+
 
 
 #####################################################
@@ -97,14 +154,14 @@ RUN pip install -r requirements_pytorch_lightning.txt
 #####################################################
 # ray tune
 #####################################################
-RUN pip install ray[default]
-RUN pip install ray[tune]
+RUN pip install ray[default]==2.0.0
+RUN pip install ray[tune]==2.0.0
 
 
 #####################################################
-# ray tune
+# optuna
 #####################################################
-RUN pip install optuna
+RUN pip install optuna==3.0.2
 
 
 #####################################################
