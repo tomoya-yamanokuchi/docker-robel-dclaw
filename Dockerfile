@@ -87,47 +87,47 @@ RUN echo "alias python='python3'" >> /root/.bashrc
 # #####################################################
 # # ROS
 # #####################################################
-# RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-# RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-# RUN apt-get update && apt-get install -y \
-# 	libfcl* \
-# 	libglew-dev \
-# 	ros-noetic-desktop-full \
-# 	ros-noetic-joy \
-# 	ros-noetic-gazebo* \
-# 	ros-noetic-moveit* \
-# 	ros-noetic-image-view* \
-# 	ros-noetic-cv-camera* \
-# 	ros-noetic-joint* \
-# 	ros-noetic-graph* \
-# 	ros-noetic-ros-controller* \
-# 	ros-noetic-joy-teleop* \
-# 	ros-noetic-eigen* \
-# 	ros-noetic-rosbridge-server* \
-# 	ros-noetic-geometric* \
-# 	ros-noetic-object-recognition* \
-# 	ros-noetic-map-server* \
-# 	ros-noetic-warehouse-ros* \
-# 	ros-noetic-rosserial \
-# 	ros-noetic-ros-numpy \
-# 	ros-noetic-geodesy && \
-# 	apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+RUN apt-get update && apt-get install -y \
+	libfcl* \
+	libglew-dev \
+	ros-noetic-desktop-full \
+	ros-noetic-joy \
+	ros-noetic-gazebo* \
+	ros-noetic-moveit* \
+	ros-noetic-image-view* \
+	ros-noetic-cv-camera* \
+	ros-noetic-joint* \
+	ros-noetic-graph* \
+	ros-noetic-ros-controller* \
+	ros-noetic-joy-teleop* \
+	ros-noetic-eigen* \
+	ros-noetic-rosbridge-server* \
+	ros-noetic-geometric* \
+	ros-noetic-object-recognition* \
+	ros-noetic-map-server* \
+	ros-noetic-warehouse-ros* \
+	ros-noetic-rosserial \
+	ros-noetic-ros-numpy \
+	ros-noetic-geodesy && \
+	apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# RUN echo "export ROSLAUNCH_SSH_UNKNOWN=1" >> /root/.bashrc
-# RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
-# RUN echo "source /home/tomoya-y/catkin_ws/devel/setup.bash" >> /root/.bashrc
-# RUN echo "export ROS_HOSTNAME=localhost" >> /root/.bashrc
-# RUN echo "export ROS_IP=localhost" >> /root/.bashrc
-# RUN echo "alias cm='cd /home/tomoya-y/catkin_ws && catkin_make'" >> /root/.bashrc
-# RUN echo "alias roscon='roslaunch ~/catkin_ws/src/image_viewers.launch'" >> /root/.bashrc
-# RUN echo "alias devices='v4l2-ctl --list-devices'" >> /root/.bashrc
+RUN echo "export ROSLAUNCH_SSH_UNKNOWN=1" >> /root/.bashrc
+RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
+RUN echo "source /home/tomoya-y/catkin_ws/devel/setup.bash" >> /root/.bashrc
+RUN echo "export ROS_HOSTNAME=localhost" >> /root/.bashrc
+RUN echo "export ROS_IP=localhost" >> /root/.bashrc
+RUN echo "alias cm='cd /home/tomoya-y/catkin_ws && catkin_make'" >> /root/.bashrc
+RUN echo "alias roscon='roslaunch ~/catkin_ws/src/image_viewers.launch'" >> /root/.bashrc
+RUN echo "alias devices='v4l2-ctl --list-devices'" >> /root/.bashrc
+
 
 
 # #####################################################
 # # camera connection
 # #####################################################
 # RUN apt-get update && apt-get install -y v4l-utils
-
 
 
 #####################################################
