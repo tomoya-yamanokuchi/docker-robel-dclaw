@@ -9,6 +9,7 @@ pandas
 natsort
 selenium
 ipdb
+attrdict
 
 ###### Requirements with Version Specifiers ######
 numpy==1.23.3

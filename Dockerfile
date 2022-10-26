@@ -1,4 +1,5 @@
-FROM nvidia/cudagl:11.4.0-base-ubuntu20.04
+# FROM nvidia/cudagl:11.4.0-base-ubuntu20.04
+FROM nvidia/cudagl:11.3.1-base-ubuntu20.04
 
 # Install packages without prompting the user to answer any questions
 ENV DEBIAN_FRONTEND=noninteractive
@@ -124,22 +125,22 @@ RUN echo "alias devices='v4l2-ctl --list-devices'" >> /root/.bashrc
 
 
 
-# #####################################################
-# # camera connection
-# #####################################################
-# RUN apt-get update && apt-get install -y v4l-utils
+# ####################################################
+# camera connection
+# ####################################################
+RUN apt-get update && apt-get install -y v4l-utils
 
 
-#####################################################
+# ####################################################
 # Install common pip packages
-#####################################################
+# ####################################################
 COPY pip/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 
-#####################################################
+# ####################################################
 # hydra
-#####################################################
+# ####################################################
 RUN pip install hydra-core==1.2.0
 RUN pip install transforms3d==0.3.1
 
@@ -147,8 +148,10 @@ RUN pip install transforms3d==0.3.1
 #####################################################
 # Pytorch Lightning
 #####################################################
-COPY pip/requirements_pytorch_lightning.txt requirements_pytorch_lightning.txt
-RUN pip install -r requirements_pytorch_lightning.txt
+RUN apt-get update
+RUN pip install tensorboard==2.9.1
+RUN pip install pytorch-lightning==1.6.5
+RUN pip install torch==1.12.0+cu113 torchvision==0.13.0+cu113 torchaudio==0.12.0 --extra-index-url https://download.pytorch.org/whl/cu113
 
 
 #####################################################

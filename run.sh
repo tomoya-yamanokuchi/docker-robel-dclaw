@@ -6,6 +6,10 @@
 # ipc=host:   ホストとメモリ共有
 
 docker run --rm -it --gpus all --privileged --net=host --ipc=host \
+--device=/dev/video0:/dev/video0 \
+--device=/dev/video1:/dev/video1 \
+--device=/dev/video2:/dev/video2 \
+--device=/dev/video3:/dev/video3 \
 -e DOCKER_USER_NAME=$(id -un) \
 -e DOCKER_USER_ID=$(id -u) \
 -e DOCKER_USER_GROUP_NAME=$(id -gn) \
