@@ -124,6 +124,10 @@ RUN echo "alias roscon='roslaunch ~/catkin_ws/src/image_viewers.launch'" >> /roo
 RUN echo "alias devices='v4l2-ctl --list-devices'" >> /root/.bashrc
 
 
+RUN echo "alias chmod_video=' \
+		sudo chmod 666 /dev/video0 && \
+		sudo chmod 666 /dev/video2'" >> /root/.bashrc
+
 
 # ####################################################
 # camera connection
