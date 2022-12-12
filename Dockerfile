@@ -221,4 +221,4 @@ COPY assets/entrypoint_setup.sh /
 ENTRYPOINT ["/entrypoint_setup.sh"] /
 
 # Run terminator
-CMD ["terminator"]
+# CMD ["terminator"]
