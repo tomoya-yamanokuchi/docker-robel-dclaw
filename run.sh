@@ -17,7 +17,7 @@ docker run --rm -it --gpus all --privileged --net=host --ipc=host \
 -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority \
 -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY \
 -v /dev/snd:/dev/snd -e AUDIODEV="hw:Device, 0" \
--v /home/$USER/workspace:/home/$USER/workspace \
+-v /home/$USER/workspace/robel-dclaw-env:/home/$USER/workspace/robel-dclaw-env \
 -v /home/$USER/docker-robel-dclaw/sample_code:/home/$USER/sample_code \
 -v /hdd_mount/ROBEL_DClaw_hands_on:/home/$USER/workspace/ROBEL_DClaw_hands_on \
 docker_robel bash
