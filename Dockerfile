@@ -63,6 +63,15 @@ RUN pip install --upgrade requests
 RUN echo "alias python='python3'" >> /root/.bashrc
 
 
+
+#####################################################
+# 					rospy
+#####################################################
+# ref) https://qiita.com/otamasan/items/7ac7732a5c3d47ec3028
+RUN pip install --extra-index-url https://rospypi.github.io/simple rospy
+RUN pip install --extra-index-url https://rospypi.github.io/simple ros-numpy
+
+
 # ####################################################
 # Install common pip packages
 # ####################################################
