@@ -112,6 +112,7 @@ RUN apt-get update && apt-get install -y \
   libglew-dev \
   virtualenv \
   xpra \
+  patchelf \
   xserver-xorg-dev \
 	swig \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -143,3 +144,4 @@ ENTRYPOINT ["/entrypoint_setup.sh"] /
 # CMD ["terminator"]
 
 # WORKDIR /home/tomoya-y/workspace/robel-dclaw-env
+# WORKDIR /nfs/workspace/robel-dclaw-env
