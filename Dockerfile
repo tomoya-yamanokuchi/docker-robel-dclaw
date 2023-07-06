@@ -124,8 +124,7 @@ RUN curl -o /usr/local/bin/patchelf https://s3-us-west-2.amazonaws.com/openai-sc
 #####################################################
 # mujoco-py
 #####################################################
-# RUN pip install 'mujoco-py<2.1,>=2.0'
-RUN pip install mujoco-py==2.0.2.13
+RUN pip install mujoco-py==2.0.2.8
 ENV LD_PRELOAD=$LD_PRELOAD:"/usr/lib/x86_64-linux-gnu/libGLEW.so"
 
 
