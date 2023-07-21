@@ -121,6 +121,10 @@ RUN curl -o /usr/local/bin/patchelf https://s3-us-west-2.amazonaws.com/openai-sc
     && chmod +x /usr/local/bin/patchelf
 
 
+ 
+RUN echo "alias robel='sudo chown -R $USER:$USER /home/$USER'" >> /root/.bashrc
+
+
 #####################################################
 # mujoco-py
 #####################################################
